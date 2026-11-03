@@ -5,16 +5,6 @@
   "members": ["阿屿", "小满"],
   "records": [
     {
-      "id": "daily-bakery",
-      "type": "daily",
-      "author": "阿屿",
-      "title": "",
-      "body": "今天路过那家面包店，还是忍不住买了你最爱的可颂。\n平凡的一天，因为想到你，变得有一点甜。",
-      "mood": "想你",
-      "created": "2026-11-03T14:00:00+08:00",
-      "hearts": 1
-    },
-    {
       "id": "photo-coast",
       "type": "photo",
       "author": "小满",

@@ -4,6 +4,26 @@
 #about-button:hover { background: #e8e7df; }
 .sidebar-account { flex-shrink: 0; }
 .account-copy { white-space: nowrap; }
+.brand-mark { width: 44px; height: 44px; flex-shrink: 0; stroke-width: 1.8; overflow: visible; }
+.brand { min-height: 44px; }
+button svg, a svg { stroke-width: 1.8; }
+.share-icon { width: 44px; height: 44px; border: 1px solid #c9c9bd; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; }
+.share-icon svg { width: 18px; height: 18px; }
+#about-button { min-height: 44px; }
+#about-button svg { width: 18px; height: 18px; }
+#navigation .nav-item { min-width: 88px; text-decoration: none; }
+.hero-art .polaroid { pointer-events: auto; cursor: zoom-in; }
+.hero-art .polaroid:focus-visible { outline: 3px solid var(--ink); outline-offset: 6px; }
+.polaroid-caption { position: absolute; bottom: 7px; left: 0; right: 0; color: #6c6c60; font: italic 11px Georgia,serif; text-align: center; }
+.hero-art .polaroid:after { content: '点击查看'; position: absolute; inset: 0 0 auto; padding: 6px; font-size: 10px; color: var(--ink); background: #fffefaee; opacity: 0; transition: opacity .2s; }
+.hero-art .polaroid:hover:after,.hero-art .polaroid:focus-visible:after { opacity: 1; }
+.stat-card { cursor: pointer; text-align: left; }
+.stat-card:focus-visible { outline: 3px solid var(--ink); outline-offset: 5px; }
+.home-album { grid-template-columns: repeat(2,minmax(0,1fr)); }
+.album-open { display: inline-flex; align-items: center; gap: 4px; }
+.album-open svg { width: 13px; height: 13px; }
+.wish-marker { display: flex; align-items: center; flex-shrink: 0; }
+.wish-marker svg { width: 16px; height: 16px; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .showcase-notice { margin: 0 0 24px; padding: 12px 16px; border: 1px dashed var(--ink); border-radius: 10px; color: #6d6d62; font-size: 12px; }
 .showcase-notice strong { color: var(--ink); }
@@ -13,18 +33,53 @@
 .readonly-wish:hover { transform: none; }
 .share-url { width: 100%; min-width: 0; overflow-wrap: anywhere; margin: 16px 0; }
 .share-url a { text-decoration: underline; }
-.game-preview-label { display: inline-block; margin-top: 12px; color: #707064; font-size: 12px; }
 .readonly-info { margin-top: 22px; }
 .readonly-info p { margin-top: 12px; overflow-wrap: anywhere; }
 .record-image[role="button"] { cursor: zoom-in; }
 .modal-inner { overflow-wrap: anywhere; }
+.modal-close { width: 44px; height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+.modal-close svg { width: 18px; height: 18px; }
+.modal-fallback { overflow: hidden; }
+.modal-fallback:before { content: ''; position: fixed; inset: 0; z-index: 100; background: #20201c50; }
+.modal-fallback dialog[open] { display: block; position: fixed; inset: 0; z-index: 101; margin: auto; height: max-content; max-height: 90vh; overflow: auto; }
 @media (max-width:850px) {
   #about-button { padding: 8px 10px; font-size: 10px; }
 }
 @media (max-width:640px) {
+  .sidebar { padding: 12px 18px; gap: 13px; }
+  .brand { gap: 8px; }
+  .brand-mark { width: 34px; height: 34px; }
+  .space-card { padding-left: 12px; }
+  #about-button { min-width: 44px; width: 44px; padding: 10px; border-radius: 50%; justify-content: center; }
+  #about-button span { display: none; }
+  #about-button:before { content: none; }
+  .polaroid-caption { font-size: 7px; bottom: 5px; }
+  .hero-art .polaroid:after { display: none; }
+  .page-heading { gap: 0; }
+  .page-heading .heading-actions { display: none; }
+  .hero { min-height: 475px; }
+  .hero-copy { padding-top: 28px; }
+  .hero-art .polaroid { top: 274px; }
+  .hero-art .polaroid.second { top: 281px; }
+  #navigation { bottom: calc(12px + env(safe-area-inset-bottom,0px)); width: calc(100% - 32px); max-width: 410px; gap: 4px; padding: 6px; }
+  #navigation .nav-item { min-width: 0; min-height: 56px; font-size: 11px; gap: 5px; padding: 8px 3px; }
+  #navigation .nav-item svg { width: 21px; height: 21px; }
+  .nav-label { bottom: calc(98px + env(safe-area-inset-bottom,0px)); }
+  .footer { padding-bottom: calc(145px + env(safe-area-inset-bottom,0px)); }
+  .toast { bottom: calc(115px + env(safe-area-inset-bottom,0px)); }
+  .stat-card,.stat-card:first-child { padding: 16px 9px; }
+  .album-meta { flex-wrap: wrap; gap: 5px; }
+  .album-card img { height: 145px; }
+  .topbar { padding: 0 18px; height: 54px; }
+  .page-grid { gap: 14px; }
+  .showcase-notice { border-style: solid; border-color: #ddddd2; line-height: 1.8; }
   .showcase-notice { font-size: 11px; padding: 11px 13px; }
   .topbar-actions { gap: 8px; }
   .topbar .demo-badge { font-size: 8px; }
   .topbar .breadcrumb { gap: 5px; }
   .heading-actions .button { white-space: nowrap; }
+}
+@media (hover:none) {
+  #navigation .nav-item:hover { transform: none; }
+  .album-card:hover,.stat-card:hover { transform: none; }
 }

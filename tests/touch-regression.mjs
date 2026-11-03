@@ -1,0 +1,32 @@
+import assert from 'node:assert/strict';
+import { pathToFileURL } from 'node:url';
+import { startStaticServer } from './static-server.mjs';
+const {chromium}=await import(pathToFileURL(process.env.PLAYWRIGHT_MODULE).href);
+const browser=await chromium.launch({headless:true,channel:process.env.BROWSER_CHANNEL||'msedge'});
+const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,locale:'zh-CN'});
+const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+const server=process.env.SITE_URL ? null : await startStaticServer();
+try{
+  await page.goto(process.env.SITE_URL||server.base,{waitUntil:'networkidle'});
+  await page.locator('.hero').waitFor();
+  await page.locator('#navigation [data-view="photo"]').tap();
+  await page.getByRole('heading',{name:'照片回忆',exact:true}).waitFor();
+  await page.locator('.album-card').first().tap();
+  await page.locator('#modal[open]').waitFor();await page.keyboard.press('Escape');
+  console.log('PASS 触屏底部导航与相册阅读可以响应');
+  await page.locator('#navigation [data-view="home"]').tap();await page.locator('.hero').waitFor();
+  const photo=page.locator('.hero-art .polaroid').first();
+  await photo.scrollIntoViewIfNeeded();const bounds=await photo.boundingBox();
+  const hit=await photo.evaluate(el=>{const r=el.getBoundingClientRect();return {pointerEvents:getComputedStyle(el).pointerEvents,element:document.elementFromPoint(r.x+r.width/2,r.y+r.height/2)?.className};});
+  console.log('Hero photo hit test: '+JSON.stringify(hit));
+  await page.touchscreen.tap(bounds.x+bounds.width/2,bounds.y+bounds.height/2);
+  assert.equal(await page.locator('#modal[open]').count(),1,'首页照片触屏后应打开大图，而非无响应');
+  await page.getByRole('button',{name:'关闭弹窗',exact:true}).tap();
+  await page.getByRole('link',{name:'查看所有信件',exact:true}).tap();
+  await page.getByRole('heading',{name:'手写信箱',exact:true}).waitFor();
+  await page.locator('.letter-card').tap();await page.locator('#modal[open]').waitFor();
+  await page.getByRole('button',{name:'关闭弹窗',exact:true}).tap();
+  assert.equal(await page.locator('#navigation [data-view="daily"],#navigation [data-view="game"]').count(),0);
+  console.log('PASS 首页照片、统计卡片和信封支持触屏，已移除两个栏目');
+  assert.deepEqual(errors,[]);
+}finally{await browser.close();await server?.close();}

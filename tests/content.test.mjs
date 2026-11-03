@@ -20,7 +20,7 @@ test('公开内容格式、日期及记录编号有效',()=>{
   const ids=new Set();
   for(const record of content.records){
     assert.ok(typeof record.id==='string' && record.id && !ids.has(record.id));ids.add(record.id);
-    assert.ok(['daily','photo','letter'].includes(record.type));
+    assert.ok(['photo','letter'].includes(record.type));
     assert.ok(content.members.includes(record.author));
     assert.equal(typeof record.title,'string');assert.equal(typeof record.body,'string');
     assert.ok(Number.isFinite(Date.parse(record.created)));
