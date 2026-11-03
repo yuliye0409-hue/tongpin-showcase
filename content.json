@@ -1,0 +1,57 @@
+{
+  "sample": true,
+  "updated": "2026-11-03",
+  "since": "2025-11-03",
+  "members": ["阿屿", "小满"],
+  "records": [
+    {
+      "id": "daily-bakery",
+      "type": "daily",
+      "author": "阿屿",
+      "title": "",
+      "body": "今天路过那家面包店，还是忍不住买了你最爱的可颂。\n平凡的一天，因为想到你，变得有一点甜。",
+      "mood": "想你",
+      "created": "2026-11-03T14:00:00+08:00",
+      "hearts": 1
+    },
+    {
+      "id": "photo-coast",
+      "type": "photo",
+      "author": "小满",
+      "title": "海边的风，和身边的你",
+      "body": "下次还要一起看日落。",
+      "mood": "心动",
+      "media": "assets/coast.jpg",
+      "created": "2026-11-02T16:00:00+08:00",
+      "hearts": 1
+    },
+    {
+      "id": "letter-tomorrow",
+      "type": "letter",
+      "author": "小满",
+      "title": "写给每一个明天的你",
+      "body": "喜欢和你分享生活里细碎的小事。\n今天的云很好看，路边的花开了，晚饭想吃面。\n还有，比昨天更喜欢你一点。",
+      "created": "2026-11-01T16:00:00+08:00",
+      "hearts": 0
+    },
+    {
+      "id": "photo-mountains",
+      "type": "photo",
+      "author": "阿屿",
+      "title": "一起收集的绿色",
+      "body": "慢慢走，慢慢看，慢慢喜欢。",
+      "mood": "开心",
+      "media": "assets/mountains.jpg",
+      "created": "2026-10-31T16:00:00+08:00",
+      "hearts": 0
+    }
+  ],
+  "wishes": [
+    { "title": "一起去海边看一次日出", "done": false },
+    { "title": "做一顿只属于我们的晚餐", "done": false },
+    { "title": "拍一组四季的合照", "done": false }
+  ],
+  "anniversaries": [
+    { "title": "下一次见面", "date": "2026-12-01" }
+  ]
+}

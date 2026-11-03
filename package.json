@@ -1,0 +1,12 @@
+{
+  "name": "tongpin-showcase",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "同频情侣空间的公开只读展示版，发布到 GitHub Pages。",
+  "scripts": {
+    "check": "node --check app.js",
+    "test": "node --test tests/content.test.mjs",
+    "test:browser": "node tests/browser-smoke.mjs"
+  }
+}
